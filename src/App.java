@@ -72,19 +72,23 @@ public class App {
             len = 0;
         }
 
-        public String buildword(char c){
+        public String buildword(char c) {
             word += c;
             return word;
         }
 
+        @Override
+        public String toString() {
+            return word;
+        }
     }
 
     public static class Sentence {
-        String str;
-        int len;
+        private String str;
+        private int len;
 
         public Sentence() {
-            str = "May the force be with you.";
+            str = new String("May the force be with you.");
             len = str.length() - 1;
         }
 
@@ -117,8 +121,13 @@ public class App {
             reverse = firstch + restofs;
             reverse = reverse.trim();
             reverse += ".";
-
+            
             return reverse;
+        }
+
+        @Override
+        public String toString() {
+            return "Sentence: " + str + ", length: " + len;
         }
     }
 
@@ -200,9 +209,9 @@ public class App {
         System.out.println();
 
         // B
-        /* 
-        String s = "Да пребудет с тобой сила."; // Исходное предложение
-        */
+        /*
+         * String s = "Да пребудет с тобой сила."; // Исходное предложение
+         */
         System.out.println("Задание b");
         Sentence str = new Sentence();
         System.out.println("Исходное предложение: '" + str + "'");
@@ -210,20 +219,25 @@ public class App {
         System.out.println();
 
         // C
-        /* 
-        System.out.println("Задание c");
-        String str = "Hello I am Alex goodnight."; // Исходное предложение
-        System.out.println("Исходное предложение: '" + str + "'");
-        System.out.println("Предложение с символом '-' вместо согласных: " + exercise_c(str));
-        System.out.println();*/
+        /*
+         * System.out.println("Задание c");
+         * String str = "Hello I am Alex goodnight."; // Исходное предложение
+         * System.out.println("Исходное предложение: '" + str + "'");
+         * System.out.println("Предложение с символом '-' вместо согласных: " +
+         * exercise_c(str));
+         * System.out.println();
+         */
 
         // D
-        /* 
-        System.out.println("Задание d");
-        String line = "Hello I am Alex goodnight cat dog and mouse."; // Исходное предложение
-        int len = 5; // длинна искомых слов
-        System.out.println("Исходное предложение: '" + line + "'");
-        System.out.println("Количество слов длинной " + len + " = " + exercise_d(line, len));*/
+        /*
+         * System.out.println("Задание d");
+         * String line = "Hello I am Alex goodnight cat dog and mouse."; // Исходное
+         * предложение
+         * int len = 5; // длинна искомых слов
+         * System.out.println("Исходное предложение: '" + line + "'");
+         * System.out.println("Количество слов длинной " + len + " = " +
+         * exercise_d(line, len));
+         */
 
     }
 }

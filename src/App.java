@@ -131,32 +131,6 @@ public class App {
         }
     }
 
-    public static String exercise_b(String s) {
-        char c = s.charAt(0);
-        int i = 0;
-        String result = "";
-        while (i < s.length() - 1) {
-            String dops = "";
-            while (c != ' ' && c != '.') {
-                dops += c;
-                i++;
-                c = s.charAt(i);
-            }
-            if (c != '.') {
-                i++;
-                c = s.charAt(i);
-            }
-            result = dops + " " + result;
-        }
-        String firstch = result.substring(0, 1);
-        String restofs = result.substring(1);
-        firstch = firstch.toUpperCase();
-        result = firstch + restofs;
-        result = result.trim();
-        result += ".";
-        return result;
-    }
-
     public static String exercise_c(String s) {
         int i = 0;
         char c = s.charAt(i);

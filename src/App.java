@@ -15,7 +15,7 @@ public class App {
             matrix = new int[4][4];
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
-                    matrix[i][j] = (int) (Math.random() * 100);
+                    matrix[i][j] = (int) (((Math.random() * 100) % 10) + 1);
                 }
             }
         }
@@ -25,14 +25,14 @@ public class App {
             len = rows * columns;
             for (int i = 0; i < matrix.length; i++) {
                 for (int j = 0; j < matrix[i].length; j++) {
-                    matrix[i][j] = (int) (Math.random() * 100);
+                    matrix[i][j] = (int) (((Math.random() * 100) % 10) + 1);
                 }
             }
         }
 
-        public float findfrequency() {
+        public float findFrequency() {
             int kol = 0; // Количество заданного числа в массиве
-            int x = 50;
+            int x = 5;
             for (int i = 0; i < matrix.length; i++) {
                 for (int j = 0; j < matrix[i].length; j++) {
                     if (matrix[i][j] == x)
@@ -42,7 +42,7 @@ public class App {
             return ((float) kol / len) * 100;
         }
 
-        public float findfrequency(int x) {
+        public float findFrequency(int x) {
             int kol = 0; // Количество заданного числа в массиве
             for (int i = 0; i < matrix.length; i++) {
                 for (int j = 0; j < matrix[i].length; j++) {
@@ -72,8 +72,9 @@ public class App {
             len = 0;
         }
 
-        public String buildword(char c) {
+        public String buildWord(char c) {
             word += c;
+            len += 1;
             return word;
         }
 
@@ -97,14 +98,14 @@ public class App {
             len = str.length() - 1;
         }
 
-        public String reverse_sentence() {
+        public String reverseSentence() {
             String reverse = "";
             char c = Character.toLowerCase(str.charAt(0));
             int i = 0;
             while (i < len) {
                 Word word = new Word();
                 while (c != ' ' && c != '.') {
-                    word.buildword(c);
+                    word.buildWord(c);
                     i++;
                     c = str.charAt(i);
                 }
@@ -121,97 +122,110 @@ public class App {
             reverse = firstch + restofs;
             reverse = reverse.trim();
             reverse += ".";
-            
+
             return reverse;
+        }
+
+        public Word consonantLetterSwapDefis() {
+            int i = 0;
+            char c = str.charAt(i);
+            Word result = new Word();
+            String wrong = "a e i o u y A E I O U Y. у е э о а ы я и ю У Е Э О А Ы Я И Ю";
+            while (i < len) {
+                if (wrong.indexOf(c) < 0) {
+                    c = '-';
+                }
+                result.buildWord(c);
+                i++;
+                c = str.charAt(i);
+            }
+            result.buildWord('.');
+            return result;
         }
 
         @Override
         public String toString() {
-            return "Sentence: " + str + ", length: " + len;
+            return str;
         }
-    }
 
-    public static String exercise_c(String s) {
-        int i = 0;
-        char c = s.charAt(i);
-        String result = "";
-        while (i < s.length() - 1) {
-            if (c != 'a' && c != 'e' && c != 'i' && c != 'o' && c != 'u' && c != 'y' && c != 'A' && c != 'E' && c != 'I'
-                    && c != 'O' && c != 'U' && c != 'Y' && c != ' ' && c != '.') {
-                c = '-';
-            }
-            result += c;
-            i++;
-            c = s.charAt(i);
-        }
-        result += '.';
-        return result;
-    }
-
-    public static int exercise_d(String line, int len) {
-
-        int i = 0;
-        char c = line.charAt(i);
-        int k = 0;
-        while (i < line.length() - 1) {
-            String dops = "";
-            while (c != ' ' && c != '.') {
-                dops += c;
-                i++;
-                c = line.charAt(i);
-            }
-            if (dops.length() == len) {
-                k++;
-                if (c != '.') {
+        public int findCountOfSameWord() {
+            int length = 5;
+            int i = 0;
+            char c = str.charAt(i);
+            int k = 0;
+            while (i < len) {
+                Word dops = new Word();
+                while (c != ' ' && c != '.') {
+                    dops.buildWord(c);
                     i++;
-                    c = line.charAt(i);
+                    c = str.charAt(i);
                 }
-            } else if (c != '.') {
-                i++;
-                c = line.charAt(i);
+                if (dops.len == length) {
+                    k++;
+                    if (c != '.') {
+                        i++;
+                        c = str.charAt(i);
+                    }
+                } else if (c != '.') {
+                    i++;
+                    c = str.charAt(i);
+                }
             }
+            return k;
         }
-        return k;
+
+        public int findCountOfSameWord(int length) {
+            int i = 0;
+            char c = str.charAt(i);
+            int k = 0;
+            while (i < len) {
+                Word dops = new Word();
+                while (c != ' ' && c != '.') {
+                    dops.buildWord(c);
+                    i++;
+                    c = str.charAt(i);
+                }
+                if (dops.len == length) {
+                    k++;
+                    if (c != '.') {
+                        i++;
+                        c = str.charAt(i);
+                    }
+                } else if (c != '.') {
+                    i++;
+                    c = str.charAt(i);
+                }
+            }
+            return k;
+        }
     }
 
     public static void main(String[] args) throws Exception {
         // A
         System.out.println("Задание a");
-        Matrix m1 = new Matrix(10, 10);
+        Matrix m1 = new Matrix(5, 5);
         m1.print();
-        System.out.println("Относительная частота встречаемости = " + m1.findfrequency() + "%");
+        System.out.println("Относительная частота встречаемости = " + m1.findFrequency(5) + "%");
         System.out.println();
 
         // B
-        /*
-         * String s = "Да пребудет с тобой сила."; // Исходное предложение
-         */
         System.out.println("Задание b");
         Sentence str = new Sentence();
         System.out.println("Исходное предложение: '" + str + "'");
-        System.out.println("Перевёрнутое предложение: '" + str.reverse_sentence() + "'");
+        System.out.println("Перевёрнутое предложение: '" + str.reverseSentence() + "'");
         System.out.println();
 
         // C
-        /*
-         * System.out.println("Задание c");
-         * String str = "Hello I am Alex goodnight."; // Исходное предложение
-         * System.out.println("Исходное предложение: '" + str + "'");
-         * System.out.println("Предложение с символом '-' вместо согласных: " +
-         * exercise_c(str));
-         * System.out.println();
-         */
+        System.out.println("Задание c");
+        Sentence line = new Sentence();
+        System.out.println("Исходное предложение: '" + line + "'");
+        System.out.println("Предложение с символом '-' вместо согласных: " + line.consonantLetterSwapDefis());
+        System.out.println();
 
         // D
-        /*
-         * System.out.println("Задание d");
-         * String line = "Hello I am Alex goodnight cat dog and mouse."; // Исходное
-         * предложение
-         * int len = 5; // длинна искомых слов
-         * System.out.println("Исходное предложение: '" + line + "'");
-         * System.out.println("Количество слов длинной " + len + " = " +
-         * exercise_d(line, len));
-         */
-
+        System.out.println("Задание d");
+        Sentence s = new Sentence("Hello I am Alex goodnight cat dog and mouse.");
+        System.out.println("Исходное предложение: '" + s + "'");
+        System.out.println("Количество слов длинной " + 5 + " = " + s.findCountOfSameWord());
     }
 }

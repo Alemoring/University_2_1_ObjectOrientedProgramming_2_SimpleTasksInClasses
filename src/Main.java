@@ -10,7 +10,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
         // A
         System.out.println("Задание a");
-        Matrix m1 = new Matrix(5, 5);
+        int[][] mas = {{4, 3, 5, 2}, {2, 3, 7, 8}, {7, 9, 1, 4}, {2, 5, 3, 5}};
+        Matrix m1 = new Matrix(mas);
         m1.print();
         System.out.println("Относительная частота встречаемости = " + m1.findFrequency(5) + "%");
         System.out.println();

@@ -20,6 +20,16 @@ public class Matrix {
             }
         }
     }
+ 
+    public Matrix(int[][] m) {
+        matrix = new int[m.length][m[0].length];
+        for (int i = 0; i < m.length; i++) {
+            len += m[i].length;
+            for (int j = 0; j < m[i].length; j++) {
+                matrix[i][j] = m[i][j];
+            }
+        }
+    }
 
     public float findFrequency() {
         return findFrequency(5);

@@ -10,10 +10,14 @@ public class Main {
     public static void main(String[] args) throws Exception {
         // A
         System.out.println("Задание a");
-        int[][] mas = {{4, 3, 5, 2}, {2, 3, 7, 8}, {7, 9, 1, 4}, {2, 5, 3, 5}};
+        int[][] mas = { { 4, 3, 5, 2 }, { 2, 3, 7, 8 }, { 7, 9, 1, 4 }, { 2, 5, 3, 5 } };
         Matrix m1 = new Matrix(mas);
+        Matrix m2 = new Matrix(m1);
+        System.out.println("Исходная матрица:");
         m1.print();
-        System.out.println("Относительная частота встречаемости = " + m1.findFrequency(5) + "%");
+        System.out.println("Клонированная матрица:");
+        m2.print();
+        System.out.println("Относительная частота встречаемости числа 5 в клонированной матрице = " + m2.findFrequency(5) + "%");
         System.out.println();
 
         // B

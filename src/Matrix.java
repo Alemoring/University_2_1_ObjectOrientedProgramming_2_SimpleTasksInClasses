@@ -30,6 +30,15 @@ public class Matrix {
             }
         }
     }
+    public Matrix(Matrix m) {
+        len = m.len;
+        matrix = new int[m.matrix.length][m.matrix[0].length];
+        for (int i = 0; i < m.matrix.length; i++) {
+            for (int j = 0; j < m.matrix[i].length; j++) {
+                matrix[i][j] = m.matrix[i][j];
+            }
+        }
+    }
 
     public float findFrequency() {
         return findFrequency(5);
